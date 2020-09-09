@@ -1,0 +1,75 @@
+version: 1
+
+deploy:
+  onCompletion:
+    - echo deploy-onCompletion
+  onSuccess:
+    - echo deploy-onSuccess
+  onFailure:
+    - echo deploy-onFailure
+
+  steps:
+    setupVariables:
+      after:
+        - echo deploy-after-setupVariables
+
+    terraformInit:
+      before:
+        - echo deploy-before-terraformInit
+      after:
+        - echo deploy-after-terraformInit
+
+    terraformPlan:
+      before:
+        - echo deploy-before-terraformPlan
+      after:
+        - echo deploy-after-terraformPlan
+
+    terraformApply:
+      before:
+        - echo deploy-before-terraformApply
+      after:
+        - echo deploy-after-terraformApply
+
+    storeState:
+      before:
+        - echo deploy-before-storeState
+      after:
+        - echo deploy-after-storeState
+
+    terraformOutput:
+      before:
+        - echo deploy-before-terraformOutput
+      after:
+        - echo deploy-after-terraformOutput
+
+destroy:
+  onCompletion:
+    - echo destroy-onCompletion
+  onSuccess:
+    - echo destroy-onSuccess
+  onFailure:
+    - echo destroy-onFailure
+
+  steps:
+    setupVariables:
+      after:
+        - echo destroy-after-setupVariables
+
+    terraformInit:
+      before:
+        - echo destroy-before-terraformInit
+      after:
+        - echo destroy-after-terraformInit
+
+    terraformPlan:
+      before:
+        - echo destroy-before-terraformPlan
+      after:
+        - echo destroy-after-terraformPlan
+
+    terraformDestroy:
+      before:
+        - echo destroy-before-terraformDestroy
+      after:
+        - echo destroy-after-terraformDestroy
